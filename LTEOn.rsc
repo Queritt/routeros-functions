@@ -1,6 +1,7 @@
-# LTE On
-# 0.21
-# 2023/01/28
+## LTE On
+## 0.22
+## 2023/03/14
+## Change reset connection to ALL
 :if ([/ip route get $lteId distance] = 1) do={
     # /system scheduler enable ISPStatus; 
     /system scheduler disable ISPFailover; 
@@ -12,9 +13,7 @@
     /queue tree enable [find comment="LTE"];
     /ip firewall raw enable [find comment="WEB-LTE"];
     /ip route set [find comment="LTE"] distance=1;
-    # /ip firewall connection remove [find];
-    :foreach i in=[/ip firewall connection find protocol~"tcp"] do={ /ip firewall connection remove $i };
-    :foreach i in=[/ip firewall connection find protocol~"udp"] do={ /ip firewall connection remove $i };
+    /ip firewall connection remove [find];
     /interface disable l2tp-out1;
     /interface disable l2tp-out2;
     # /interface disable l2tp-out3;
