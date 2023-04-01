@@ -19,8 +19,8 @@
                         :set outMsgSplit ($outMsgSplit, [:pick $outMsg 0 ($foundChar +3)]);
                         :set $outMsg [:pick $outMsg ($foundChar +3) [:len $outMsg]];
                     } else={
-                        :set outMsgSplit ($outMsgSplit, [:pick $outMsg 0 4096]);
-                        :set $outMsg [:pick $outMsg 4096 [:len $outMsg]];
+                        :set outMsgSplit ($outMsgSplit, [:pick $outMsg 0 $maxLength]);
+                        :set $outMsg [:pick $outMsg $maxLength [:len $outMsg]];
                     }
                 } else={:set outMsgSplit ($outMsgSplit, $outMsg); :set $outMsg "";};
             }
